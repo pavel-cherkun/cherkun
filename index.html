@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<script>document.documentElement.classList.add("js")</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Павел Черкун — креатор для рекламных тендеров. 15 медалей фестивалей, кейсы Дикси, ФК «Зенит», Ozon. Прихожу автором идеи и довожу её до защиты.">
+<meta property="og:title" content="CHERKUN™ — Павел Черкун, креатор для тендеров">
+<meta property="og:description" content="15 медалей фестивалей на моих проектах. Прихожу автором идеи и довожу её до защиты.">
+<meta property="og:image" content="https://pavel-cherkun.github.io/cherkun/assets/hero_a.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111014'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%23f5a300'/%3E%3C/svg%3E">
+<title>CHERKUN™ — Павел Черкун, креатор для тендеров</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sofia+Sans+Extra+Condensed:wght@800;900&family=Golos+Text:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet"><!-- taste-skill-ignore: один моно-элемент — живые часы в шапке, решение Паши -->
+<style>
+:root{
+  --bg:#f2f3f1; --surface:#e4e6e2; --ink:#111014; --muted:#55545a; --accent:#f5a300; --dark:#111014; --on-dark:#f2f3f1;
+  --m:28px; --display:"Sofia Sans Extra Condensed",Impact,sans-serif; --text:"Golos Text",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--ink);font:18px/1.5 var(--text);overflow-x:hidden}
+a{color:inherit}
+/* шапка */
+.bar{position:fixed;inset:0 0 auto 0;z-index:20;display:flex;align-items:center;gap:28px;padding:18px var(--m);background:var(--bg)}
+.bar .wm{font:900 22px/1 var(--display);letter-spacing:.01em;text-decoration:none}
+.bar nav{display:flex;gap:22px;margin-left:auto}
+.bar nav a{text-decoration:none;font-weight:600;font-size:16px;color:var(--muted);transition:color .2s}
+.bar nav a.on,.bar nav a:hover{color:var(--ink)}
+.bar .clock{font:500 15px/1 "IBM Plex Mono",monospace;color:var(--muted)}
+.btn{display:inline-block;background:var(--ink);color:var(--bg);text-decoration:none;font-weight:600;font-size:16px;padding:14px 22px;border-radius:0;transition:background .2s,transform .15s}
+.btn:hover{background:var(--accent);color:var(--ink)}.btn:active{transform:translateY(1px)}
+/* горизонтальная лента */
+.track-wrap{position:relative}
+.track{position:sticky;top:0;height:100svh;overflow:hidden}
+.rail{display:flex;height:100%;will-change:transform}
+.sheet{flex:0 0 100vw;height:100%;position:relative;padding:96px var(--m) var(--m);overflow:hidden}
+/* лист 0 */
+.s0 h1{position:absolute;left:var(--m);right:var(--m);bottom:calc(var(--m) - 2vw);font:900 clamp(120px,23.5vw,420px)/.78 var(--display);letter-spacing:-.01em;white-space:nowrap}
+.s0 .lead{max-width:520px;font-size:clamp(22px,2vw,30px);line-height:1.2;font-weight:600}
+.s0 .acts{display:flex;gap:20px;align-items:center;margin-top:28px}
+.s0 .acts a.more{font-weight:600;text-decoration:none;border-bottom:2px solid var(--accent)}
+.s0 .facts{display:grid;grid-template-columns:repeat(4,minmax(0,170px));gap:22px 28px;margin-top:40px}
+.s0 .facts b{display:block;font:900 56px/1 var(--display)}
+.s0 .facts span{font-size:16px;color:var(--muted)}
+.unit{position:absolute;right:var(--m);top:12vh;width:min(46vw,760px);transition:transform .25s ease-out}
+.unit img{width:100%;display:block;mix-blend-mode:multiply}
+.unit figcaption{font-size:16px;color:var(--muted);margin-top:4px;max-width:420px}
+/* лист 1 */
+.s1{display:grid;grid-template-columns:1.25fr 1fr;gap:40px}
+.s1 h2,.s2 h2,.s3 h2,.s4 h2,.s5 h2{font:900 clamp(56px,7vw,120px)/.9 var(--display);letter-spacing:-.005em}
+.s1 .lead{margin:16px 0 22px;max-width:560px}
+.cases{list-style:none}
+.cases li a{display:flex;align-items:baseline;gap:18px;text-decoration:none;padding:3px 0}
+.cases li .n{font:800 clamp(30px,3.1vw,50px)/1.02 var(--display);transition:color .15s,transform .2s}
+.cases li .m{font-size:16px;color:var(--muted)}
+.cases li a:hover .n,.cases li a:focus .n{color:var(--accent);transform:translateX(8px)}
+.preview{position:relative;align-self:center;aspect-ratio:4/3;background:var(--surface)}
+.preview img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .3s}
+.preview img.on{opacity:1}
+.preview .tag{position:absolute;left:0;bottom:-34px;font-weight:600}
+/* лист 2 */
+.s2{background:var(--dark);color:var(--on-dark);display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.s2 .open{align-self:center;justify-self:center;height:76vh}
+.s2 .open img{height:100%;display:block}
+.s2 .lead{font-size:26px;line-height:1.25;margin:18px 0;font-weight:600}
+.mods{display:grid;grid-template-columns:1fr 1fr;gap:16px 28px;margin-top:22px}
+.mods div{background:#1d1c21;padding:14px 16px}
+.mods b{color:var(--accent);display:block}
+.s2 .f{font-weight:600;font-size:22px;line-height:1.3;margin-top:22px;color:var(--accent)}
+/* лист 3-5 */
+.s3{display:grid;grid-template-columns:.7fr 1.8fr;gap:48px}
+.games{display:grid;grid-template-columns:1.25fr 1fr;gap:24px;align-items:start}
+.game video{width:100%;display:block;background:#000}
+.game .q{font-weight:600;margin:10px 0 16px}
+.g1 video{aspect-ratio:16/9;object-fit:cover;margin-bottom:16px}
+.g2{display:grid;grid-template-columns:150px 1fr;gap:20px}
+.phone{background:#111014;padding:6px;border-radius:22px}.phone video{aspect-ratio:1080/2338;object-fit:cover;border-radius:16px}
+.game{background:var(--surface);padding:24px;align-self:start}
+.game h3{font:900 40px/1 var(--display);margin-bottom:8px}
+.s4 ul{list-style:none;columns:2;column-gap:48px;margin-top:28px;max-width:1200px}
+.s4 li{break-inside:avoid;margin-bottom:18px}
+.s4 li b{display:block}
+.s4 .dial{position:absolute;right:var(--m);bottom:var(--m);font:900 clamp(120px,16vw,280px)/.8 var(--display);color:var(--ink);border-bottom:14px solid var(--accent)}
+.s5{background:var(--dark);color:var(--on-dark)}
+.s5 .lead{max-width:640px;font-size:24px;margin:18px 0 28px}
+.s5 .btn{background:var(--accent);color:var(--ink)}
+.s5 ul{list-style:none;margin-top:28px;font-size:20px}
+.s5 .foot{position:absolute;left:var(--m);right:var(--m);bottom:calc(var(--m) - 2vw);font:900 clamp(120px,23.5vw,420px)/.78 var(--display);white-space:nowrap;color:var(--on-dark)}
+/* телефон: лента становится вертикальной */
+@media (max-width:820px){
+  :root{--m:16px}
+  .bar nav,.bar .clock{display:none}
+  .bar .btn{padding:10px 14px;font-size:15px;margin-left:auto}
+  .track{position:static;height:auto}
+  .rail{display:block;transform:none!important}
+  .sheet{height:auto;min-height:100svh;padding-top:88px}
+  .s0 h1{position:static;font-size:24vw;margin-bottom:18px;white-space:normal}
+  .s0 .facts{grid-template-columns:repeat(2,1fr)}
+  .s0{display:flex;flex-direction:column}.s0 .acts{order:3;margin-top:28px}.s0 .unit{order:4}.s0 .facts{margin-top:24px}
+  .unit{position:static;width:100%;margin:12px 0}
+  .s1,.s2,.s3,.games{grid-template-columns:1fr}
+  .s2 .open{height:auto}.s2 .open img{width:100%;height:auto}
+  .mods{grid-template-columns:1fr}
+  .s4 ul{columns:1}.s4 .dial{position:static}
+  .s5 .foot{position:static;font-size:25vw;margin-top:40px}
+}
+/* 3D-юнит: холст поверх ленты; картинки-заглушки прячем, место под юнит остаётся */
+#gl{position:fixed;inset:0;width:100vw;height:100svh;z-index:10;pointer-events:none;display:none}
+.gl #gl{display:block}
+.gl .unit img,.gl .preview,.gl .s2 .open img,.gl .s4 .dial{visibility:hidden}
+.gl .unit figcaption{display:none}
+/* полотно кейса */
+.case{position:fixed;inset:0;z-index:40;background:var(--bg);overflow-y:auto;overscroll-behavior:contain;transform:translateY(100%);transition:transform .55s cubic-bezier(.2,.7,.1,1);visibility:hidden}
+.case.open{transform:none;visibility:visible}
+.case-bar{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:20px;padding:16px var(--m);background:var(--bg)}
+.case-bar button{font:600 16px var(--text);background:none;border:0;cursor:pointer;color:var(--ink);padding:8px 0}
+.case-bar button:hover{color:var(--accent)}
+.case-bar .wm{font:900 22px/1 var(--display);margin-left:auto}
+.case-head{padding:24px var(--m) 0}
+.case-head h2{font:900 clamp(64px,13vw,220px)/.82 var(--display);letter-spacing:-.005em}
+.case-head .meta{font-size:20px;margin-top:14px}
+.case-facts{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;padding:48px var(--m) 56px}
+.case-facts h3{font:800 26px/1 var(--display);margin-bottom:8px}
+.case-facts .aw{grid-column:1/-1;background:var(--surface);padding:16px 20px;font-weight:600}
+.case-media{display:flex;flex-direction:column}
+.case-media img,.case-media video{display:block;width:100%;height:auto;background:var(--surface)}
+.case-media .row{display:flex}.case-media .row>*{flex:1;min-width:0}
+.case-media .vid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:4px;background:var(--dark);padding:4px}
+.case-media .embed{position:relative;aspect-ratio:16/9;background:var(--dark)}.case-media .embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.case-media .txt{max-width:760px;padding:48px var(--m);font-size:20px;white-space:pre-line}
+.case-next{display:flex;justify-content:space-between;align-items:end;gap:24px;padding:72px var(--m) 48px;background:var(--dark);color:var(--on-dark);text-decoration:none}
+.case-next b{font:900 clamp(48px,8vw,140px)/.85 var(--display)}
+.case-next:hover b{color:var(--accent)}
+.case-src{padding:20px var(--m) 40px;background:var(--dark);color:var(--on-dark)}
+html.lock{overflow:hidden}
+@media (max-width:820px){.case-facts{grid-template-columns:1fr}.case-media .row{flex-direction:column}}
+/* появление частей листа: заголовок → текст → остальное, один раз */
+.js [data-in]{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .7s cubic-bezier(.2,.7,.1,1);transition-delay:calc(var(--d,0)*75ms)}
+.js [data-in].in{opacity:1;transform:none}
+.case-media img,.case-media video{opacity:0;transition:opacity .5s}.case-media .ok{opacity:1}
+.btn,.cases li a,.case-next,.case-bar button{will-change:transform}
+@media (prefers-reduced-motion:reduce){.js [data-in]{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="bar">
+  <a class="wm" href="#s0">CHERKUN™</a>
+  <nav>
+    <a href="#s1" data-i="1">Кейсы</a><a href="#s2" data-i="2">Юнит</a><a href="#s3" data-i="3">Вне брифа</a><a href="#s4" data-i="4">Замеры</a><a href="#s5" data-i="5">Доступ</a>
+  </nav>
+  <span class="clock" id="clock">--:-- СПб</span>
+  <a class="btn" href="https://t.me/cherkun">Написать в Telegram</a>
+</header>
+
+<canvas id="gl" aria-hidden="true"></canvas>
+<div class="track-wrap" id="wrap">
+<div class="track">
+<div class="rail" id="rail">
+
+<section class="sheet s0" id="s0">
+  <h1>CHERKUN™</h1>
+  <p class="lead" data-in style="--d:1">Павел Черкун — креатор для тендеров. Прихожу автором идеи и довожу её до защиты.</p>
+  <div class="acts" data-in style="--d:2"><a class="btn" href="https://t.me/cherkun">Прислать бриф в Telegram</a><a class="more" href="#s1">Смотреть кейсы →</a></div>
+  <div class="facts" data-in style="--d:3">
+    <div><b>15</b><span>медалей фестивалей на моих проектах</span></div>
+    <div><b>до 50%</b><span>тендеров выиграно в лучшие сезоны, где я автор идеи</span></div>
+    <div><b>8 лет</b><span>в рекламе</span></div>
+    <div><b>24 ч</b><span>на ответ по брифу</span></div>
+  </div>
+  <figure class="unit" id="unit" data-in style="--d:4"><img src="assets/hero_a.jpg" alt="Юнит CHERKUN с лицом Павла на передней панели"><figcaption>Creative Compute Unit. Оболочка — человек. Lead AI-креатор в OXYGEN, Санкт-Петербург.</figcaption></figure>
+</section>
+
+<section class="sheet s1" id="s1">
+  <div>
+    <h2 data-in style="--d:1">Что я выиграл</h2>
+    <p class="lead" data-in style="--d:2">Девять работ, за которые я отвечаю именем. Нажмите на строку — откроется полное полотно.</p>
+    <ul class="cases" id="cases">
+      <li data-in style="--d:3"><a href="#case/zaklinateli" data-img="thumbs/zaklinateli.jpg"><span class="n">Заклинатели</span><span class="m">Дикси · золото Silver Mercury</span></a></li>
+      <li data-in style="--d:4"><a href="#case/xroniki-izory" data-img="thumbs/xroniki-izory.jpg"><span class="n">Хроники Ижоры</span><span class="m">ФК «Зенит» · золото SM СЗФО</span></a></li>
+      <li data-in style="--d:5"><a href="#case/tresnutye-3" data-img="thumbs/tresnutye-3.jpg"><span class="n">Треснутые 3</span><span class="m">Дикси · 6 медалей</span></a></li>
+      <li data-in style="--d:6"><a href="#case/ozon-x-fandom-fest" data-img="thumbs/ozon-x-fandom-fest.jpg"><span class="n">Ozon × Фандом Фэст</span><span class="m">3 медали</span></a></li>
+      <li data-in style="--d:7"><a href="#case/diksi-klipersy" data-img="thumbs/diksi-klipersy.jpg"><span class="n">Клиперсы</span><span class="m">лучшая реклама ритейла по «Нейротренду»</span></a></li>
+      <li data-in style="--d:8"><a href="#case/diksi-dino" data-img="thumbs/diksi-dino.jpg"><span class="n">Дикси Дино</span><span class="m">5 шорт-листов</span></a></li>
+      <li data-in style="--d:9"><a href="#case/sinegrivyi-lev-talisman-fk-zenit" data-img="thumbs/sinegrivyi-lev-talisman-fk-zenit.jpg"><span class="n">Синегривый лев</span><span class="m">ФК «Зенит» · 2025 · креативный лидер</span></a></li>
+      <li data-in style="--d:10"><a href="#case/purr-love" data-img="thumbs/purr-love.jpg"><span class="n">Purr Love</span><span class="m">брендинг</span></a></li>
+      <li data-in style="--d:11"><a href="#case/dogs" data-img="thumbs/dogs-1.jpg"><span class="n">DOGS.</span><span class="m">SMM без бюджета · 2019</span></a></li>
+    </ul>
+  </div>
+  <div class="preview" id="preview"></div>
+</section>
+
+<section class="sheet s2" id="s2">
+  <figure class="open" data-in style="--d:1"><img src="assets/maintenance.jpg" alt="Юнит с открытой дверцей: провода, лампы и стикеры внутри"></figure>
+  <div>
+    <h2 data-in style="--d:2">Как устроен юнит</h2>
+    <p class="lead" data-in style="--d:3">Креативлю не в вакууме, а в рамках бюджета.</p>
+    <p data-in style="--d:4">До рекламы я был главным бухгалтером. Потом три года продюсировал события на 600–1000 человек. Смету считает продюсер — а я держу в голове её порядок и предлагаю то, что в него помещается.</p>
+    <div class="mods" data-in style="--d:5">
+      <div><b>Стратегия</b>Решение вытекает из задачи — поэтому его легко защищать.</div>
+      <div><b>Концепт</b>Big idea и механики: ATL, BTL, 360, event, digital.</div>
+      <div><b>Копирайт</b>Нейминг, слоганы, манифесты, тексты носителей.</div>
+      <div><b>Сценарий и продакшн</b>С пометками, что снимается за эти деньги.</div>
+      <div><b>Защита</b>Выхожу к комитету сам или готовлю спикера.</div>
+      <div><b>AI-пайплайны</b>В 2–3 раза быстрее. Материалы клиента — не в публичные модели.</div>
+    </div>
+    <p class="f" data-in style="--d:6">Идея, которая опоздала на защиту, стоит ноль.</p>
+  </div>
+</section>
+
+<section class="sheet s3" id="s3">
+  <div>
+    <h2 data-in style="--d:1">Вне брифа</h2>
+    <p style="margin-top:18px;max-width:440px" data-in style="--d:2">Что я собираю по ночам, без клиента и без дедлайна. Обе игры можно открыть прямо сейчас.</p>
+  </div>
+  <div class="games" data-in style="--d:3">
+    <article class="game g1" data-in style="--d:4">
+      <video src="assets/games/entropy.mp4" poster="assets/games/entropy.jpg" muted loop autoplay playsinline></video>
+      <h3>Война с энтропией</h3>
+      <p data-in style="--d:5">Изометрическая стратегия в постапокалиптическом фэнтези. Девять рас, и у каждой своя правда о Конце. 27 миссий.</p>
+      <p class="q" data-in style="--d:6">Истины нет. Есть то, что ты удержишь.</p>
+      <a class="btn" href="https://pavel-cherkun.github.io/pepelny-predel/">Играть</a>
+    </article>
+    <article class="game g2" data-in style="--d:7">
+      <div class="phone"><video src="assets/games/vibe.mp4" poster="assets/games/vibe.jpg" muted loop autoplay playsinline></video></div>
+      <div>
+        <h3>Vibe City</h3>
+        <p data-in style="--d:8">Симулятор жизни внутри фейкового супер-аппа корпорации. Работа, кредиты, доставка, друзья и мама — всё в одном приложении, которое очень о тебе заботится.</p>
+        <p class="q" data-in style="--d:9">Стань легендой или обанкроться.</p>
+        <a class="btn" href="https://pavel-cherkun.github.io/vibe/">Играть с телефона</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="sheet s4" id="s4">
+  <h2 data-in style="--d:1">Показания приборов</h2>
+  <p style="margin-top:16px;max-width:640px" data-in style="--d:2">За 2022–2026 агентство собрало 20 фестивальных медалей. 15 из них — на проектах, которые вёл я.</p>
+  <div class="dial" data-in style="--d:3">15/20</div>
+  <ul>
+    <li data-in style="--d:4"><b>Silver Mercury 2025 — золото</b>D16 Best Gamification. «Заклинатели».</li>
+    <li data-in style="--d:5"><b>Silver Mercury СЗФО 2026 — золото</b>Best Craft of Design, плюс серебро и бронза. «Хроники Ижоры».</li>
+    <li data-in style="--d:6"><b>Silver Mercury 2025 — серебро и бронза</b>K12 и K13. Ozon на Фандом Фесте.</li>
+    <li data-in style="--d:7"><b>Silver Mercury 2024 — серебро</b>D01 Best Executed Digital Tool Campaign. «Треснутые 3».</li>
+    <li data-in style="--d:8"><b>Red Apple 2024–2025</b>Бронза ×4 и 9 шорт-листов.</li>
+    <li data-in style="--d:9"><b>«Нейротренд»</b>«Клиперсы» — лучшая реклама продуктового ритейла. Не жюри, а мозг аудитории.</li>
+  </ul>
+</section>
+
+<section class="sheet s5" id="s5">
+  <h2 data-in style="--d:1">Пришлите бриф</h2>
+  <p class="lead" data-in style="--d:2">За 24 часа отвечу: берусь или нет, и почему. Если не берусь — скажу, кого позвать вместо меня.</p>
+  <a class="btn" href="https://t.me/cherkun">Написать в Telegram</a>
+  <ul><li data-in style="--d:3">p.cherkun@gmail.com</li><li data-in style="--d:4">dprofile.ru/cherkun</li><li data-in style="--d:5">set.ki/SGATFnW</li></ul>
+  <div class="foot" data-in style="--d:6">CHERKUN™</div>
+</section>
+
+</div></div></div>
+
+<script>
+// часы
+const ck=document.getElementById('clock');
+const tick=()=>{ck.textContent=new Date().toLocaleTimeString('ru-RU',{timeZone:'Europe/Moscow',hour:'2-digit',minute:'2-digit'})+' СПб'};tick();setInterval(tick,15000);
+// горизонтальная лента от вертикального скролла
+const wrap=document.getElementById('wrap'),rail=document.getElementById('rail'),n=rail.children.length;
+const links=[...document.querySelectorAll('.bar nav a')];
+const desktop=()=>matchMedia('(min-width:821px)').matches;
+function size(){wrap.style.height=desktop()?(n*100)+'vh':'auto';move()}
+function move(){
+  if(!desktop()){rail.style.transform='';return}
+  const max=wrap.offsetHeight-innerHeight, p=Math.min(Math.max(scrollY/max,0),1), x=p*(n-1)*innerWidth;
+  rail.style.transform=`translate3d(${-x}px,0,0)`; window.__sheet=p*(n-1);
+  const i=Math.round(p*(n-1)); links.forEach(a=>a.classList.toggle('on',+a.dataset.i===i));
+}
+addEventListener('scroll',move,{passive:true});(function loop(){move();requestAnimationFrame(loop)})();addEventListener('resize',size);size();
+// прямая ссылка на лист: index.html?s=3
+const qs=new URLSearchParams(location.search).get('s');
+if(qs!==null&&desktop()){history.scrollRestoration='manual';const go=()=>{scrollTo(0,+qs/(n-1)*(wrap.offsetHeight-innerHeight));move()};go();addEventListener('load',go)}
+// пункты меню ведут на лист
+document.querySelectorAll('a[href^="#s"]').forEach(a=>a.addEventListener('click',e=>{
+  if(!desktop())return; e.preventDefault(); const i=+a.getAttribute('href').slice(2);
+  scrollTo({top:i/(n-1)*(wrap.offsetHeight-innerHeight),behavior:'smooth'});
+}));
+// юнит следит за курсором (заглушка будущего 3D)
+const unit=document.getElementById('unit');
+addEventListener('pointermove',e=>{if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  const dx=(e.clientX/innerWidth-.5),dy=(e.clientY/innerHeight-.5);
+  unit.style.transform=`perspective(900px) rotateY(${dx*14}deg) rotateX(${-dy*10}deg)`;});
+// превью кейсов
+const pv=document.getElementById('preview');
+document.querySelectorAll('#cases a').forEach((a,k)=>{
+  const im=new Image();im.src=a.dataset.img;im.alt='';pv.appendChild(im);if(k===0)im.classList.add('on');
+  const show=()=>{pv.querySelectorAll('img').forEach(x=>x.classList.toggle('on',x===im));dispatchEvent(new CustomEvent('unit',{detail:{img:a.dataset.img}}))};
+  if(k===0)setTimeout(show,0);
+  a.addEventListener('pointerenter',show);a.addEventListener('focus',show);
+});
+</script>
+<script>
+// кнопки заставляют юнит улыбнуться
+document.querySelectorAll('.btn').forEach(b=>b.addEventListener('pointerenter',()=>dispatchEvent(new CustomEvent('unit',{detail:{smile:true}}))));
+</script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<script type="module">
+// 3D только на десктопе и при живом WebGL; иначе остаются картинки
+const ok=matchMedia('(min-width:821px)').matches&&(()=>{try{return !!document.createElement('canvas').getContext('webgl2')}catch(e){return false}})();
+if(ok){
+  try{
+    await document.fonts.ready;
+    const {mountUnit}=await import('./unit/unit.js');
+    mountUnit(document.getElementById('gl'));
+    document.documentElement.classList.add('gl');
+  }catch(e){console.warn('3D-юнит не запустился',e)}
+}
+</script>
+<div class="case" id="case" role="dialog" aria-modal="true" aria-labelledby="case-title">
+  <div class="case-bar"><button type="button" id="case-close">← Назад к ленте</button><span class="wm">CHERKUN™</span></div>
+  <div id="case-body"></div>
+</div>
+<script>
+// монумент CHERKUN™ ровно по ширине поля, после загрузки шрифта и на ресайзе
+function fitMonuments(){document.querySelectorAll('.s0 h1,.s5 .foot').forEach(el=>{
+  el.style.fontSize='';const cs=getComputedStyle(el),box=el.parentElement.clientWidth-parseFloat(getComputedStyle(el.parentElement).paddingLeft)*2;
+  const r=document.createRange();r.selectNodeContents(el);const w=r.getBoundingClientRect().width;
+  if(w<=0)return; let fs=parseFloat(cs.fontSize)*box/w*0.995;
+  // на десктопе монумент не залезает на цифры: высота ограничена свободным местом
+  const facts=el.parentElement.querySelector('.facts');
+  if(facts&&matchMedia('(min-width:821px)').matches){const room=innerHeight-facts.getBoundingClientRect().bottom-24; fs=Math.min(fs,room/0.74)}
+  el.style.fontSize=fs+'px';})}
+document.fonts.ready.then(fitMonuments);addEventListener('resize',fitMonuments);
+</script>
+<script src="cases.js"></script>
+<script>
+// полотно кейса: открывается снизу, адрес #case/slug, Esc закрывает
+const box=document.getElementById('case'),body=document.getElementById('case-body');
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const md=t=>esc(t).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>');
+function media(b){
+  if(b.t==='img')return `<img src="${b.src}" width="${b.w}" height="${b.h}" loading="lazy" alt="">`;
+  if(b.t==='loop')return `<video src="${b.src}" muted loop autoplay playsinline preload="none"></video>`;
+  if(b.t==='row')return `<div class="row">${b.items.map(media).join('')}</div>`;
+  if(b.t==='embed')return `<div class="embed"><iframe src="${b.src}" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Видео кейса"></iframe></div>`;
+  if(b.t==='text')return `<p class="txt">${md(b.text)}</p>`;
+  return '';
+}
+function openCase(slug,push){
+  const i=CASES.findIndex(c=>c.slug===slug); if(i<0)return;
+  const c=CASES[i],nx=CASES[(i+1)%CASES.length];
+  const f=k=>c[k]?`<div><h3>${k}</h3><p>${esc(c[k])}</p></div>`:'';
+  body.innerHTML=`<header class="case-head"><h2 id="case-title">${esc(c.title)}</h2><p class="meta">${esc(c.meta)}${c.role?' · '+esc(c.role):''}</p></header>
+  <div class="case-facts">${f('Задача')}${f('Ограничения')}${f('Решение')}${f('Результат')}${c.awards?`<p class="aw">${esc(c.awards)}</p>`:''}</div>
+  <div class="case-media">${c.video.length?`<div class="vid">${c.video.map(v=>`<video src="${v.src}" poster="${v.poster}" controls playsinline preload="none"></video>`).join('')}</div>`:''}${c.blocks.map(media).join('')}</div>
+  <a class="case-next" href="#case/${nx.slug}"><span>Следующий кейс</span><b>${esc(nx.title)} →</b></a>
+  ${c.dprofile?`<p class="case-src">Полотно целиком — <a href="${c.dprofile}" target="_blank" rel="noopener">на dprofile ↗</a></p>`:''}`;
+  box.scrollTop=0; box.classList.add('open'); document.documentElement.classList.add('lock');
+  if(push)history.pushState(null,'','#case/'+slug); document.getElementById('case-close').focus({preventScroll:true});
+}
+function closeCase(push){box.classList.remove('open');document.documentElement.classList.remove('lock');body.querySelectorAll('video').forEach(v=>v.pause());if(push)history.pushState(null,'',location.pathname+location.search)}
+document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#case/"]');if(!a)return;e.preventDefault();openCase(a.getAttribute('href').slice(6),true)});
+document.getElementById('case-close').addEventListener('click',()=>closeCase(true));
+addEventListener('keydown',e=>{if(e.key==='Escape'&&box.classList.contains('open'))closeCase(true)});
+const route=()=>{const m=location.hash.match(/^#case\/(.+)$/);m?openCase(m[1],false):closeCase(false)};
+addEventListener('popstate',route); box.style.transition='none'; route(); requestAnimationFrame(()=>requestAnimationFrame(()=>box.style.transition=''));
+</script>
+<script>
+// появление: срабатывает, когда часть листа въехала в кадр (работает и при горизонтальной ленте)
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.2});
+document.querySelectorAll('[data-in]').forEach(el=>io.observe(el));
+// картинки полотна проявляются по загрузке
+new MutationObserver(()=>document.querySelectorAll('.case-media img:not(.ok),.case-media video:not(.ok)').forEach(m=>{
+  const ok=()=>m.classList.add('ok'); if(m.complete||m.readyState>1)ok(); m.addEventListener('load',ok,{once:true}); m.addEventListener('loadeddata',ok,{once:true}); setTimeout(ok,2500);
+})).observe(document.getElementById('case-body'),{childList:true});
+</script>
+</body>
+</html>
