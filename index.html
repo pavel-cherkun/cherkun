@@ -50,7 +50,7 @@ a{color:inherit}
 .unit figcaption{font-size:16px;color:var(--muted);margin-top:4px;max-width:420px}
 /* лист 1 */
 .s1{display:grid;grid-template-columns:1.25fr 1fr;gap:40px}
-.s1 h2,.s2 h2,.s3 h2,.s4 h2,.s5 h2{font:900 clamp(56px,7vw,120px)/.9 var(--display);letter-spacing:-.005em}
+.s1 h2,.s2 h2,.s3 h2,.s4 h2,.s5 h2,.s6 h2{font:900 clamp(56px,7vw,120px)/.9 var(--display);letter-spacing:-.005em}
 .s1 .lead{margin:16px 0 22px;max-width:560px}
 .cases{list-style:none}
 .cases li a{display:flex;align-items:baseline;gap:18px;text-decoration:none;padding:3px 0}
@@ -70,17 +70,22 @@ a{color:inherit}
 .mods div{background:#1d1c21;padding:14px 16px}
 .mods b{color:var(--accent);display:block}
 .s2 .f{font-weight:600;font-size:22px;line-height:1.3;margin-top:22px;color:var(--accent)}
-/* лист 3-5 */
-.s3{display:grid;grid-template-columns:.7fr 1.8fr;gap:48px}
-.games{display:grid;grid-template-columns:1.25fr 1fr;gap:24px;align-items:start}
-.game video{width:100%;display:block;background:#000}
-.game .q{font-weight:600;margin:10px 0 16px}
-.g1 video{aspect-ratio:16/9;object-fit:cover;margin-bottom:16px}
-.g2{display:grid;grid-template-columns:150px 1fr;gap:20px}
-.phone{background:#111014;padding:6px;border-radius:22px}.phone video{aspect-ratio:1080/2338;object-fit:cover;border-radius:16px}
-.game{background:var(--surface);padding:24px;align-self:start}
-.game h3{font:900 40px/1 var(--display);margin-bottom:8px}
-.s4 ul{list-style:none;columns:2;column-gap:48px;margin-top:28px;max-width:1200px}
+/* листы 3–6 */
+.s3,.s6{display:flex;flex-direction:column;gap:clamp(16px,3vh,32px)}
+.pets-head{display:flex;align-items:end;gap:40px}.pets-head p{max-width:460px;margin-bottom:10px}
+.games{display:grid;grid-template-columns:1fr 1fr;gap:24px;min-height:0;align-items:start}
+.game{background:var(--surface);padding:clamp(14px,2vh,22px);display:flex;flex-direction:column;align-items:flex-start;min-height:0}
+.game .media{width:100%;height:clamp(170px,34vh,430px);background:#111014;display:flex;justify-content:center;align-items:center;overflow:hidden;margin-bottom:14px}
+.g1 .media video{width:100%;height:100%;object-fit:cover}
+.g2 .phone{height:94%;aspect-ratio:1080/2338;background:#000;border-radius:18px;padding:4px}.g2 .phone video{width:100%;height:100%;object-fit:cover;border-radius:14px;display:block}
+.game h3{font:900 clamp(30px,3vw,42px)/1 var(--display);margin-bottom:6px}.game p{font-size:17px}
+.game .q{font-weight:600;margin:8px 0 14px}
+.cfgs{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;flex:1;min-height:0}
+.cfgs figure{display:flex;flex-direction:column;min-height:0}
+.cfgs img{width:100%;height:clamp(180px,46vh,520px);object-fit:cover;display:block;background:#e9ebe7}
+.cfgs figcaption{margin-top:14px;max-width:380px}.cfgs b{display:block;font:900 clamp(30px,3vw,44px)/1 var(--display);margin-bottom:6px}
+
+.s4 ul{list-style:none;columns:2;column-gap:40px;margin-top:28px;max-width:min(1200px,54vw)}
 .s4 li{break-inside:avoid;margin-bottom:18px}
 .s4 li b{display:block}
 .s4 .dial{position:absolute;right:var(--m);bottom:var(--m);font:900 clamp(120px,16vw,280px)/.8 var(--display);color:var(--ink);border-bottom:14px solid var(--accent)}
@@ -101,7 +106,8 @@ a{color:inherit}
   .s0 .facts{grid-template-columns:repeat(2,1fr)}
   .s0{display:flex;flex-direction:column}.s0 .acts{order:3;margin-top:28px}.s0 .unit{order:4}.s0 .facts{margin-top:24px}
   .unit{position:static;width:100%;margin:12px 0}
-  .s1,.s2,.s3,.games{grid-template-columns:1fr}
+  .s1,.s2,.games,.cfgs{grid-template-columns:1fr}
+  .pets-head{display:block}.game .media,.cfgs img{height:auto;aspect-ratio:16/10}.g2 .media{aspect-ratio:auto;height:60vh}
   .s2 .open{height:auto}.s2 .open img{width:100%;height:auto}
   .mods{grid-template-columns:1fr}
   .s4 ul{columns:1}.s4 .dial{position:static}
@@ -113,14 +119,14 @@ a{color:inherit}
 .gl .unit img,.gl .preview,.gl .s2 .open img,.gl .s4 .dial{visibility:hidden}
 .gl .unit figcaption{display:none}
 /* полотно кейса */
-.case{position:fixed;inset:0;z-index:40;background:var(--bg);overflow-y:auto;overscroll-behavior:contain;transform:translateY(100%);transition:transform .55s cubic-bezier(.2,.7,.1,1);visibility:hidden}
+.case{container-type:inline-size;position:fixed;inset:0;z-index:40;background:var(--bg);overflow-y:auto;overscroll-behavior:contain;transform:translateY(100%);transition:transform .55s cubic-bezier(.2,.7,.1,1);visibility:hidden}
 .case.open{transform:none;visibility:visible}
 .case-bar{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:20px;padding:16px var(--m);background:var(--bg)}
 .case-bar button{font:600 16px var(--text);background:none;border:0;cursor:pointer;color:var(--ink);padding:8px 0}
 .case-bar button:hover{color:var(--accent)}
 .case-bar .wm{font:900 22px/1 var(--display);margin-left:auto}
 .case-head{padding:24px var(--m) 0}
-.case-head h2{font:900 clamp(64px,13vw,220px)/.82 var(--display);letter-spacing:-.005em}
+.case-head h2{font:900 clamp(52px,13cqw,220px)/.82 var(--display);letter-spacing:-.005em}
 .case-head .meta{font-size:20px;margin-top:14px}
 .case-facts{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;padding:48px var(--m) 56px}
 .case-facts h3{font:800 26px/1 var(--display);margin-bottom:8px}
@@ -136,7 +142,14 @@ a{color:inherit}
 .case-next:hover b{color:var(--accent)}
 .case-src{padding:20px var(--m) 40px;background:var(--dark);color:var(--on-dark)}
 html.lock{overflow:hidden}
-@media (max-width:820px){.case-facts{grid-template-columns:1fr}.case-media .row{flex-direction:column}}
+@container (max-width:820px){.case-facts{grid-template-columns:1fr 1fr;padding-top:32px}.case-head .meta{font-size:17px}.case-media .txt{font-size:17px}}
+@container (max-width:520px){.case-facts{grid-template-columns:1fr}.case-media .row{flex-direction:column}}
+/* режим телевизора: кейс живёт на экране 3D-юнита */
+#tvbg{position:fixed;inset:0;z-index:9;background:var(--bg);opacity:0;pointer-events:none;transition:opacity .5s}
+.tv #tvbg{opacity:1}
+.tv .bar{opacity:0;pointer-events:none;transition:opacity .3s}
+.tv .case{transform:none;visibility:visible;opacity:0;pointer-events:none;transition:opacity .35s;border-radius:6px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.25)}
+.tv .case.open{opacity:1;pointer-events:auto}
 /* появление частей листа: заголовок → текст → остальное, один раз */
 .js [data-in]{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .7s cubic-bezier(.2,.7,.1,1);transition-delay:calc(var(--d,0)*75ms)}
 .js [data-in].in{opacity:1;transform:none}
@@ -150,12 +163,13 @@ html.lock{overflow:hidden}
 <header class="bar">
   <a class="wm" href="#s0">CHERKUN™</a>
   <nav>
-    <a href="#s1" data-i="1">Кейсы</a><a href="#s2" data-i="2">Юнит</a><a href="#s3" data-i="3">Вне брифа</a><a href="#s4" data-i="4">Замеры</a><a href="#s5" data-i="5">Доступ</a>
+    <a href="#s1" data-i="1">Кейсы</a><a href="#s2" data-i="2">Юнит</a><a href="#s3" data-i="3">Конфигурации</a><a href="#s3" data-i="4">Пет-проекты</a><a href="#s4" data-i="5">Замеры</a><a href="#s5" data-i="6">Доступ</a>
   </nav>
   <span class="clock" id="clock">--:-- СПб</span>
   <a class="btn" href="https://t.me/cherkun">Написать в Telegram</a>
 </header>
 
+<div id="tvbg" aria-hidden="true"></div>
 <canvas id="gl" aria-hidden="true"></canvas>
 <div class="track-wrap" id="wrap">
 <div class="track">
@@ -182,12 +196,12 @@ html.lock{overflow:hidden}
       <li data-in style="--d:3"><a href="#case/zaklinateli" data-img="thumbs/zaklinateli.jpg"><span class="n">Заклинатели</span><span class="m">Дикси · золото Silver Mercury</span></a></li>
       <li data-in style="--d:4"><a href="#case/xroniki-izory" data-img="thumbs/xroniki-izory.jpg"><span class="n">Хроники Ижоры</span><span class="m">ФК «Зенит» · золото SM СЗФО</span></a></li>
       <li data-in style="--d:5"><a href="#case/tresnutye-3" data-img="thumbs/tresnutye-3.jpg"><span class="n">Треснутые 3</span><span class="m">Дикси · 6 медалей</span></a></li>
-      <li data-in style="--d:6"><a href="#case/ozon-x-fandom-fest" data-img="thumbs/ozon-x-fandom-fest.jpg"><span class="n">Ozon × Фандом Фэст</span><span class="m">3 медали</span></a></li>
+      <li data-in style="--d:6"><a href="#case/ozon-x-fandom-fest" data-img="thumbs/ozon-x-fandom-fest.jpg"><span class="n">Озон Корп</span><span class="m">Ozon · Фандом Фэст · 3 медали</span></a></li>
       <li data-in style="--d:7"><a href="#case/diksi-klipersy" data-img="thumbs/diksi-klipersy.jpg"><span class="n">Клиперсы</span><span class="m">лучшая реклама ритейла по «Нейротренду»</span></a></li>
       <li data-in style="--d:8"><a href="#case/diksi-dino" data-img="thumbs/diksi-dino.jpg"><span class="n">Дикси Дино</span><span class="m">5 шорт-листов</span></a></li>
       <li data-in style="--d:9"><a href="#case/sinegrivyi-lev-talisman-fk-zenit" data-img="thumbs/sinegrivyi-lev-talisman-fk-zenit.jpg"><span class="n">Синегривый лев</span><span class="m">ФК «Зенит» · 2025 · креативный лидер</span></a></li>
       <li data-in style="--d:10"><a href="#case/purr-love" data-img="thumbs/purr-love.jpg"><span class="n">Purr Love</span><span class="m">брендинг</span></a></li>
-      <li data-in style="--d:11"><a href="#case/dogs" data-img="thumbs/dogs-1.jpg"><span class="n">DOGS.</span><span class="m">SMM без бюджета · 2019</span></a></li>
+      <li data-in style="--d:11"><a href="#case/dogs" data-img="thumbs/dogs.jpg"><span class="n">DOGS.</span><span class="m">SMM без бюджета · 2019</span></a></li>
     </ul>
   </div>
   <div class="preview" id="preview"></div>
@@ -211,32 +225,41 @@ html.lock{overflow:hidden}
   </div>
 </section>
 
-<section class="sheet s3" id="s3">
-  <div>
-    <h2 data-in style="--d:1">Вне брифа</h2>
-    <p style="margin-top:18px;max-width:440px" data-in style="--d:2">Что я собираю по ночам, без клиента и без дедлайна. Обе игры можно открыть прямо сейчас.</p>
+<section class="sheet s6" id="s3">
+  <div class="pets-head">
+    <h2 data-in style="--d:1">Конфигурации</h2>
+    <p data-in style="--d:2">Один юнит — три способа подключить его к вашему тендеру.</p>
   </div>
-  <div class="games" data-in style="--d:3">
-    <article class="game g1" data-in style="--d:4">
-      <video src="assets/games/entropy.mp4" poster="assets/games/entropy.jpg" muted loop autoplay playsinline></video>
+  <div class="cfgs">
+    <figure data-in style="--d:3"><img src="gen/hero_b.jpg" alt="Юнит CHERKUN с лицом Павла на экране" loading="lazy"><figcaption><b>Соло</b>Подключаюсь к вашей команде автором идеи. Концепт, тексты, сценарий — и сам выхожу на защиту.</figcaption></figure>
+    <figure data-in style="--d:4"><img src="gen/trio.jpg" alt="Юнит в связке с ИИ-модулем и роботом-манипулятором" loading="lazy"><figcaption><b>Связка</b>Юнит, ИИ-пайплайн и манипулятор. Визуализация и аниматики к защите в 2–3 раза быстрее.</figcaption></figure>
+    <figure data-in style="--d:5"><img src="gen/case.jpg" alt="Юнит, упакованный в транспортный кейс" loading="lazy"><figcaption><b>Выезд</b>Упакован в кейс, приезжает на ваш тендер. Обращаться бережно: внутри идеи.</figcaption></figure>
+  </div>
+</section>
+<section class="sheet s3" id="s4">
+  <div class="pets-head">
+    <h2 data-in style="--d:1">Пет-проекты</h2>
+    <p data-in style="--d:2">Что я собираю по ночам, без клиента и без дедлайна. Обе игры можно открыть прямо сейчас.</p>
+  </div>
+  <div class="games">
+    <article class="game g1" data-in style="--d:3">
+      <div class="media"><video src="assets/games/entropy.mp4" poster="assets/games/entropy.jpg" muted loop autoplay playsinline></video></div>
       <h3>Война с энтропией</h3>
-      <p data-in style="--d:5">Изометрическая стратегия в постапокалиптическом фэнтези. Девять рас, и у каждой своя правда о Конце. 27 миссий.</p>
-      <p class="q" data-in style="--d:6">Истины нет. Есть то, что ты удержишь.</p>
+      <p>Изометрическая стратегия в постапокалиптическом фэнтези. Девять рас, и у каждой своя правда о Конце. 27 миссий.</p>
+      <p class="q">Истины нет. Есть то, что ты удержишь.</p>
       <a class="btn" href="https://pavel-cherkun.github.io/pepelny-predel/">Играть</a>
     </article>
-    <article class="game g2" data-in style="--d:7">
-      <div class="phone"><video src="assets/games/vibe.mp4" poster="assets/games/vibe.jpg" muted loop autoplay playsinline></video></div>
-      <div>
-        <h3>Vibe City</h3>
-        <p data-in style="--d:8">Симулятор жизни внутри фейкового супер-аппа корпорации. Работа, кредиты, доставка, друзья и мама — всё в одном приложении, которое очень о тебе заботится.</p>
-        <p class="q" data-in style="--d:9">Стань легендой или обанкроться.</p>
-        <a class="btn" href="https://pavel-cherkun.github.io/vibe/">Играть с телефона</a>
-      </div>
+    <article class="game g2" data-in style="--d:4">
+      <div class="media"><div class="phone"><video src="assets/games/vibe.mp4" poster="assets/games/vibe.jpg" muted loop autoplay playsinline></video></div></div>
+      <h3>Vibe City</h3>
+      <p>Симулятор жизни внутри фейкового супер-аппа корпорации. Работа, кредиты, доставка, друзья и мама — всё в одном приложении, которое очень о тебе заботится.</p>
+      <p class="q">Стань легендой или обанкроться.</p>
+      <a class="btn" href="https://pavel-cherkun.github.io/vibe/">Играть с телефона</a>
     </article>
   </div>
 </section>
 
-<section class="sheet s4" id="s4">
+<section class="sheet s4" id="s5">
   <h2 data-in style="--d:1">Показания приборов</h2>
   <p style="margin-top:16px;max-width:640px" data-in style="--d:2">За 2022–2026 агентство собрало 20 фестивальных медалей. 15 из них — на проектах, которые вёл я.</p>
   <div class="dial" data-in style="--d:3">15/20</div>
@@ -250,7 +273,7 @@ html.lock{overflow:hidden}
   </ul>
 </section>
 
-<section class="sheet s5" id="s5">
+<section class="sheet s5" id="s6">
   <h2 data-in style="--d:1">Пришлите бриф</h2>
   <p class="lead" data-in style="--d:2">За 24 часа отвечу: берусь или нет, и почему. Если не берусь — скажу, кого позвать вместо меня.</p>
   <a class="btn" href="https://t.me/cherkun">Написать в Telegram</a>
@@ -354,10 +377,18 @@ function openCase(slug,push){
   <div class="case-media">${c.video.length?`<div class="vid">${c.video.map(v=>`<video src="${v.src}" poster="${v.poster}" controls playsinline preload="none"></video>`).join('')}</div>`:''}${c.blocks.map(media).join('')}</div>
   <a class="case-next" href="#case/${nx.slug}"><span>Следующий кейс</span><b>${esc(nx.title)} →</b></a>
   ${c.dprofile?`<p class="case-src">Полотно целиком — <a href="${c.dprofile}" target="_blank" rel="noopener">на dprofile ↗</a></p>`:''}`;
-  box.scrollTop=0; box.classList.add('open'); document.documentElement.classList.add('lock');
+  box.scrollTop=0; const H=document.documentElement; H.classList.add('lock'); window.__tvClosing=false;
+  if(H.classList.contains('gl')){
+    if(!H.classList.contains('tv')){H.classList.add('tv');dispatchEvent(new CustomEvent('unit',{detail:{tv:true}}));(function place(){
+      if(!H.classList.contains('tv'))return; const r=window.__screenRect;
+      if(r){Object.assign(box.style,{inset:'auto',left:r.l+'px',top:r.t+'px',width:r.w+'px',height:r.h+'px'}); if(r.settled&&!window.__tvClosing)box.classList.add('open')}
+      requestAnimationFrame(place)})()}
+  } else box.classList.add('open');
   if(push)history.pushState(null,'','#case/'+slug); document.getElementById('case-close').focus({preventScroll:true});
 }
-function closeCase(push){box.classList.remove('open');document.documentElement.classList.remove('lock');body.querySelectorAll('video').forEach(v=>v.pause());if(push)history.pushState(null,'',location.pathname+location.search)}
+function closeCase(push){const H=document.documentElement;window.__tvClosing=true;box.classList.remove('open');
+  if(H.classList.contains('tv')){setTimeout(()=>{H.classList.remove('tv','lock');box.removeAttribute('style');dispatchEvent(new CustomEvent('unit',{detail:{tv:false}}))},300)}
+  else H.classList.remove('lock');body.querySelectorAll('video').forEach(v=>v.pause());if(push)history.pushState(null,'',location.pathname+location.search)}
 document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#case/"]');if(!a)return;e.preventDefault();openCase(a.getAttribute('href').slice(6),true)});
 document.getElementById('case-close').addEventListener('click',()=>closeCase(true));
 addEventListener('keydown',e=>{if(e.key==='Escape'&&box.classList.contains('open'))closeCase(true)});

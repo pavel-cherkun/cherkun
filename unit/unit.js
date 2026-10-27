@@ -162,13 +162,15 @@ export function mountUnit(canvas) {
     { x: 0.5, y: -0.06, s: 1.08, ry: -0.6, rx: 0.08, door: 0, show: 'case' },
     { x: -0.5, y: -0.08, s: 1.12, ry: 0.62, rx: 0.1, door: 1, show: 'focus' },
     { x: 0.62, y: 1.9, s: 0.7, ry: -0.3, rx: 0.1, door: 0, show: 'face' },
+    { x: 0.62, y: 1.9, s: 0.7, ry: -0.3, rx: 0.1, door: 0, show: 'face' },
     { x: 0.55, y: -0.05, s: 0.95, ry: -0.35, rx: 0.1, door: 0, show: 'medals' },
     { x: 0.5, y: 0.2, s: 0.85, ry: -0.4, rx: 0.12, door: 0, show: 'smile' },
   ];
 
-  let caseSrc = null, smileUntil = 0, blinkAt = 2.5, mx = 0, my = 0;
+  let caseSrc = null, smileUntil = 0, blinkAt = 2.5, mx = 0, my = 0, tvOn = false;
+  const blackTex = new THREE.CanvasTexture(paintCanvas(4, 4, ctx => { ctx.fillStyle = '#0d0d10'; ctx.fillRect(0, 0, 4, 4); }));
   addEventListener('pointermove', e => { mx = e.clientX / innerWidth - 0.5; my = e.clientY / innerHeight - 0.5; });
-  addEventListener('unit', e => { if (e.detail.img) caseSrc = e.detail.img; if (e.detail.smile) smileUntil = clock.elapsedTime + 1.4; });
+  addEventListener('unit', e => { if (e.detail.img) caseSrc = e.detail.img; if (e.detail.smile) smileUntil = clock.elapsedTime + 1.4; if ('tv' in e.detail) tvOn = e.detail.tv; });
 
   function resize() {
     const w = innerWidth, h = innerHeight;
@@ -178,24 +180,32 @@ export function mountUnit(canvas) {
 
   const clock = new THREE.Clock(); const lerp = (a, b, t) => a + (b - a) * t;
   const ease = t => t * t * (3 - 2 * t);
-  const cur = { x: 0, y: 0, s: 1, ry: 0, rx: 0, door: 0 }; let first = true;
+  const cur = { x: 0, y: 0, z: 0, s: 1, ry: 0, rx: 0, door: 0, tv: 0 }; let first = true;
+  const corners = [[-0.5, 0.56], [0.5, 0.56], [-0.5, -0.56], [0.5, -0.56]].map(([x, y]) => new THREE.Vector3(x, y, 0));
+  const v = new THREE.Vector3();
 
   renderer.setAnimationLoop(() => {
-    if (document.documentElement.classList.contains('lock')) return; // открыт кейс — юнит спит
+    if (document.documentElement.classList.contains('lock') && !tvOn) return; // кейс открыт без 3D — юнит спит
     const t = clock.getElapsedTime();
     const f = Math.min(Math.max(window.__sheet || 0, 0), K.length - 1);
     const i = Math.floor(f), j = Math.min(i + 1, K.length - 1), k = ease(f - i), A = K[i], B = K[j];
     const halfH = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.position.z, halfW = halfH * camera.aspect;
     const target = {
       x: lerp(A.x, B.x, k) * halfW, y: lerp(A.y, B.y, k) * halfH, s: lerp(A.s, B.s, k) * Math.min(1, camera.aspect / 1.6),
-      ry: lerp(A.ry, B.ry, k), rx: lerp(A.rx, B.rx, k), door: lerp(A.door, B.door, k),
+      ry: lerp(A.ry, B.ry, k), rx: lerp(A.rx, B.rx, k), door: lerp(A.door, B.door, k), z: 0, tv: 0,
     };
+    if (tvOn) {
+      // режим телевизора: экран встаёт ровно перед камерой и занимает ~84% высоты окна
+      const d = 1.12 / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * 0.84);
+      Object.assign(target, { x: 0.44, y: camera.position.y, z: camera.position.z - d - (FZ + 0.228), s: 1, ry: 0, rx: 0, door: 0, tv: 1 });
+    }
     const sm = first || reduce ? 1 : 0.12; first = false;
     for (const p in cur) cur[p] = lerp(cur[p], target[p], sm);
 
-    unit.position.set(cur.x, cur.y + (reduce ? 0 : Math.sin(t * 1.3) * 0.03), 0);
+    const live = reduce ? 0 : 1 - cur.tv;
+    unit.position.set(cur.x, cur.y + Math.sin(t * 1.3) * 0.03 * live, cur.z);
     unit.scale.setScalar(cur.s);
-    unit.rotation.set(cur.rx + (reduce ? 0 : my * 0.15), cur.ry + (reduce ? 0 : mx * 0.5), 0);
+    unit.rotation.set(cur.rx + my * 0.15 * live, cur.ry + mx * 0.5 * live, 0);
     hinge.rotation.y = -cur.door * 1.55;
     inside.visible = cur.door > 0.02;
 
@@ -206,6 +216,7 @@ export function mountUnit(canvas) {
     else if (show === 'focus') map = FACE[2];
     else if (show === 'case' && caseSrc) map = tex(caseSrc);
     else if (show === 'medals') map = medals;
+    if (tvOn || cur.tv > 0.05) map = blackTex;
     if (map === FACE[0] && !reduce) { if (t > blinkAt) { map = FACE[3]; if (t > blinkAt + 0.14) blinkAt = t + 2.5 + Math.random() * 3; } }
     if (screenMat.map !== map) { screenMat.map = map; screenMat.needsUpdate = true; }
 
@@ -215,6 +226,17 @@ export function mountUnit(canvas) {
     levers.forEach((l, n) => l.rotation.x = lerp(l.rotation.x, (Math.floor(f + 0.5) + n) % 2 ? 0.7 : -0.7, 0.1));
 
     renderer.render(scene, camera);
+
+    // прямоугольник экрана в пикселях окна: по нему страница ставит полотно кейса
+    if (cur.tv > 0.01) {
+      let l = 1e9, r = -1e9, tp = 1e9, b = -1e9;
+      for (const c of corners) {
+        v.copy(c); screen.localToWorld(v); v.project(camera);
+        const px = (v.x + 1) / 2 * innerWidth, py = (1 - v.y) / 2 * innerHeight;
+        l = Math.min(l, px); r = Math.max(r, px); tp = Math.min(tp, py); b = Math.max(b, py);
+      }
+      window.__screenRect = { l, t: tp, w: r - l, h: b - tp, settled: Math.abs(cur.tv - 1) < 0.01 };
+    } else window.__screenRect = null;
   });
 }
 
